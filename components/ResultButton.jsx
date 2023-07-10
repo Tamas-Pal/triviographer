@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { motion } from "framer-motion";
 
+// button slides in when question answered, slides out when clicked
 export const ResultButton = (props) => {
   let resultText =
     props.state === "win" ? (

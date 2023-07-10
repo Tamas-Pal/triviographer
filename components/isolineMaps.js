@@ -1,3 +1,7 @@
+// Array of 3 frames, each frame array contains states of each path
+// "p": is pattern fill
+// "d": path
+
 const isolineMaps = [
   [
     {

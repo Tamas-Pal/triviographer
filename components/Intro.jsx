@@ -2,11 +2,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 export const Intro = (props) => {
-    const letters = "Triviographer".split("");
+  const letters = "Triviographer".split("");
+
+  // state to set presence of elements
   const [showLoad, setShowLoad] = useState({ text: true, background: true });
+
   return (
     showLoad.background && (
-      <div className="loading-wrap">
+      <div className="intro-wrap">
         <AnimatePresence
           mode="wait"
           onExitComplete={() => {
@@ -17,7 +20,7 @@ export const Intro = (props) => {
             <motion.div
               exit={{ rotateZ: -90 }}
               transition={{ delay: 0.5, duration: 0.75, ease: "linear" }}
-              className="loading"
+              className="intro"
             >
               <AnimatePresence
                 onExitComplete={() => {
@@ -28,14 +31,17 @@ export const Intro = (props) => {
                   <motion.h1
                     exit={{ opacity: 0 }}
                     transition={{ delay: 3, duration: 0.5 }}
+                    className="intro_text-wrap"
                   >
-                    <span className="loading-text">{`Welcome to`}</span>
+                    <span className="intro_text">{`Welcome to`}</span>
                     <br />
                     {letters.map((letter, index) => {
                       return (
                         <motion.span
-                          className={`loading-letter ${index+1 === letters.length ? 'last-letter' : ''}`}
-                          key={letter}
+                          className={`intro_text_letter ${
+                            index + 1 === letters.length ? "last-letter" : ""
+                          }`}
+                          key={letter + index}
                           animate={{ opacity: [0, 1, 0] }}
                           transition={{
                             repeat: Infinity,
@@ -49,7 +55,7 @@ export const Intro = (props) => {
                       );
                     })}
                     <br />
-                    <span className="loading-text">
+                    <span className="intro_text">
                       {`A Geography Quiz Game`}
                     </span>
                   </motion.h1>

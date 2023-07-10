@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { motion } from "framer-motion";
 export default function Button(props) {
-  // console.log(props);
   const buttonState =
     props.state === "active"
       ? "active"
@@ -24,12 +23,8 @@ export default function Button(props) {
         id={props.id}
         className={`main_answer ${buttonState}`}
         onClick={props.handleAnswer}
-      >
-        {/* <motion.span key={props.text} initial={{ opacity: 0, transition: { delay: .75 } }}
-      animate={{ opacity: 1, transition: { delay: .75 } }}
-      exit={{ opacity: 0, transition: { delay: .0, duration: .25 } }}> */}
+      >  
         {props.answerText}
-        {/* </motion.span> */}
       </motion.button>
     </motion.div>
   );

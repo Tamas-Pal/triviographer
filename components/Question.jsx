@@ -3,16 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 /* eslint-disable react/prop-types */
 const Question = forwardRef(function Question(props, ref) {
-  /*  const questionRef = useRef(null);
-  useLayoutEffect(() => {
-    const root = document.querySelector(":root");
-    let questionHeight = questionRef.current.offsetHeight;
-    root.style.setProperty("--question-y", Math.ceil(questionHeight / 8) + 8);
-  }, [props.challenge]);*/
-
+  
+  // handler to only update question when the previous had animated out / unmounted
   const questionExitComplete = () => {
-    // console.log(props.challenge.q);
-    //props.setIsExitComplete((prevState) => ({...prevState, question: true}))}
     props.setCurrentContent((prevState) => ({
       ...prevState,
       q: props.challenge.q,

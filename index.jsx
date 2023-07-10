@@ -1,6 +1,8 @@
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
 
+// import CSS variables
+
 const strokeWidth = parseFloat(
   getComputedStyle(document.documentElement).getPropertyValue("--stroke-width")
 );

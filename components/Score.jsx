@@ -15,8 +15,7 @@ export default function Score(props) {
         stiffness: 50,
       }}
     >
-      {props.size.width > 720 && <Scale
-      // strokeWidth={props.strokeWidth} colors={props.colors}
+      { props.isLargeSize && <Scale
       />}
       <p className="score_ratio">
         {`${score.points}`} <span className="score_ratio_division">/</span>{" "}
@@ -29,9 +28,8 @@ export default function Score(props) {
       <div className="percentage_bar">
         <motion.div
           className="score_bar_fill"
-          // style={{ width: (128 * score.points) / score.questionsTotal }}
           animate={{ width: (128 * score.points) / score.questionsTotal }}
-          transition={{ /*type: "spring", stiffness: 150,*/ duration: 1 }}
+          transition={{ duration: 1 }}
         ></motion.div>
       </div>
       </div>

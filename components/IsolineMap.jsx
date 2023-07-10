@@ -1,23 +1,49 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import isolineMaps from "./isolineMaps";
 
 export default function IsolineMap(props) {
-  let viewbox = {
-    x: props.isolineAttributes.width,
-    y: props.isolineAttributes.height + props.strokeWidth * 2,
-  };
-  let scale = props.size.width >= 720 ? 1.48 : 1.9 ;
-  let origin = {
-    x: (viewbox.x * scale - viewbox.x) / 2,
-    y: (viewbox.y * scale - viewbox.y) / 2,
-  };
+  
+  // SVG Parameters
+  
   let strokeWidth = props.strokeWidth;
   let white = props.colors.white;
   let lightgray = props.colors.lightgray;
 
+  let viewbox, scale, rotate, translateX, translateY;
+  viewbox = {
+    x: props.isolineAttributes.width,
+    y: props.isolineAttributes.height + props.strokeWidth * 2,
+  };
+  scale = 2.05;
+  rotate = 0;
+  translateX = -8;
+  translateY = 72;
+  let origin = {
+    x: (viewbox.x * scale - viewbox.x) / 2,
+    y: (viewbox.y * scale - viewbox.y) / 2,
+  };
+
+  // Layout Transition
+
+  // default transition
+  const [layoutTransition, setLayoutTransition] = useState({
+    delay: 0.5,
+    duration: 0.5,
+    ease: "linear",
+  });
+  
+  // turn off transition when layout changes
+  useEffect(() => {
+    setLayoutTransition({ delay: 0.0, duration: 0.0, ease: "linear" });
+  }, [props.isLargeSize]);
+
   return (
+
+    // Wrapper
+    
     <motion.div
       className="main_isoline-map"
       animate={{
@@ -25,8 +51,20 @@ export default function IsolineMap(props) {
         width: props.isolineAttributes.width,
         y: props.isolineAttributes.y,
       }}
-      transition={{ delay: 0.5, duration: 0.5, ease: "linear" }}
+      transition={layoutTransition}
+
+  // turns back default transition values
+      onAnimationComplete={() => {
+        setLayoutTransition({
+          delay: 0.5,
+          duration: 0.5,
+          ease: "linear",
+        });
+      }}
     >
+
+      {/* SVG */}
+
       <motion.svg
         animate={{
           viewBox: `${origin.x} 
@@ -34,7 +72,7 @@ export default function IsolineMap(props) {
       ${props.isolineAttributes.width} 
       ${viewbox.y}`,
         }}
-        transition={{ delay: 0.5, duration: 0.5, ease: "linear" }}
+        transition={layoutTransition}
         version="1.1"
         id="isoline-map"
         viewBox={`${origin.x} 
@@ -58,17 +96,18 @@ export default function IsolineMap(props) {
             <circle fill={white} cx="11.5" cy="-4.5" r={strokeWidth * 1.5} />
           </g>
         </pattern>
+        
+        {/* Animating lines */}
+    
         <g>
           {isolineMaps[0].map((isoline, index) => (
-            // index === 16 &&
             <motion.path
               key={`isoline${index}`}
               fill={isoline.p ? "url(#dots)" : lightgray}
               stroke={white}
               strokeWidth={strokeWidth / scale}
-              transform={`scale(${scale}), translate(0,${32})`}
+              transform={`rotate(${rotate}) scale(${scale}) translate(${translateX},${translateY})`}
               animate={{
-                // stroke: ["#FF0000","#00FF00","#0000FF","#000000",{white},"#888888"],
                 d: [
                   isolineMaps[0][index].d,
                   isolineMaps[1][index].d,
@@ -79,7 +118,7 @@ export default function IsolineMap(props) {
               }}
               transition={{
                 repeat: Infinity,
-                duration: 10 /*, ease: "linear"*/,
+                duration: 10,
               }}
             />
           ))}

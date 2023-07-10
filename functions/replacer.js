@@ -1,4 +1,3 @@
-// LLANFAIR&SHY;PWLLGWYNGYLL&SHY;GOGERY&SHY;CHWYRN&SHY;DROBWLL&SHY;LLAN&SHY;TYSILIO&SHY;GOGO&SHY;GOCH
 export default function replacer(string) {
   return (
     string

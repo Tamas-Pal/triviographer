@@ -1,13 +1,37 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;700&display=swap"); */
+/*
+1 -- Generic / Containers
+.........................
+2 -- Header
+3 -- Design Elements
+4 -- Question
+5 -- Answers
+6 -- Result Button
+7 -- Score
+.........................
+8 -- Intro
+.........................
+9 -- Media
+  9.1 - Decreased Height
+  9.2 - Mobile
+    9.2.1 Generic / Containers
+    9.2.2 Header
+    9.2.3 Design Elements
+    9.2.4-7 Question, Answers, Result, Score
+*/
+
+
+/* 1 -- GENERIC / CONTAINERS -- */
+
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* font-family: "Barlow", sans-serif; */
   font-family: "Josefin Sans", sans-serif;
 }
+
+/* Variables */
 
 :root {
   /* colors */
@@ -25,19 +49,19 @@
   --min-width: 50%;
   --unit: 8px;
   /* layout */
-  --grid-y: 89;
   --gap: 4;
   --padding-top: var(--gap);
   --frame-gap: 1;
-  --question-x: 78;
-  --question-y: 16;
   --answers-x: 78;
   --answers-y: 28;
+  --question-x: var(--answers-x);
+  --question-y: 16;
   --wireframe-x: 52;
-  --wireframe-y: 89;
+  --wireframe-y: 80;
+  --grid-y: var(--wireframe-y);
   --header-x: 33;
   --header-y: 8;
-  --frame-x: 80;
+  --frame-x: calc(2 * var(--frame-gap) + var(--answers-x));
   --frame-y: calc(
     var(--question-y) + var(--answers-y) + var(--gap) + var(--frame-gap)
   );
@@ -51,14 +75,7 @@
   --score-y: 10;
 }
 
-h1 {
-  color: var(--white);
-  font-size: 24px;
-  letter-spacing: 1px;
-  line-height: 28px;
-  text-transform: uppercase;
-  overflow: hidden;
-}
+
 
 body {
   background: linear-gradient(var(--bg-lightgray), var(--lightgray));
@@ -78,24 +95,16 @@ body {
   grid-template-rows: repeat(var(--grid-y), var(--unit));
 }
 
-.deep-background {
+h1 {
+  color: var(--white);
+  font-size: 24px;
+  letter-spacing: 1px;
+  line-height: 28px;
+  text-transform: uppercase;
   overflow: hidden;
-  position: absolute;
-  left: 0px;
-  width: 100%;
-  height: 25%;
-  z-index: -2;
-  background-color: var(--offwhite);
-  opacity: 0.25;
-  /*mix-blend-mode: multiply;*/
-  /* border: var(--stroke-width) solid var(--white);*/
 }
 
-.globe-wireframe {
-  z-index: -1;
-  grid-column: calc(var(--header-x) + var(--gap)) / span var(--wireframe-x);
-  grid-row: 1 / span var(--wireframe-y);
-}
+/* 2 -- HEADER -- */
 
 header {
   grid-column: 1 / span var(--header-x);
@@ -123,6 +132,25 @@ header {
   color: var(--white);
 }
 
+/* 3 -- DESIGN ELEMENTS -- */
+
+.deep-background {
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 25%;
+  z-index: -2;
+  background-color: var(--offwhite);
+  opacity: 0.25;
+}
+
+.globe-wireframe {
+  z-index: -1;
+  grid-column: calc(var(--header-x) + var(--gap)) / span var(--wireframe-x);
+  grid-row: 1 / span var(--wireframe-y);
+}
+
 .main_frame {
   grid-column: 1 / span var(--frame-x);
   grid-row: calc(var(--header-y) + var(--gap) * 2) / span var(--frame-y);
@@ -139,7 +167,7 @@ header {
   background-color: var(--primary);
   background: linear-gradient(var(--bg-lightgray), var(--lightgray));
   border: calc(var(--stroke-width) * 2) solid var(--white);
-  z-index: 1;
+  z-index: 2;
 }
 
 .main_isoline-map {
@@ -148,8 +176,10 @@ header {
   background-color: var(--lightgray);
   border: calc(var(--stroke-width) * 2) solid var(--white);
   overflow: hidden;
-  z-index: 2;
+  z-index: 3;
 }
+
+/* 4 -- QUESTION -- */
 
 .main_question-wrap {
   grid-column: calc(1 + var(--frame-gap)) / span var(--question-x);
@@ -160,7 +190,7 @@ header {
   justify-content: center;
   align-items: center;
   padding: calc(var(--unit) * 4) calc(var(--unit) * 8);
-  z-index: 3;
+  z-index: 4;
 }
 
 .main_question {
@@ -172,15 +202,16 @@ header {
   overflow: hidden;
 }
 
+/* 5 -- ANSWERS -- */
+
 .main_answers {
   grid-column: calc(1 + var(--frame-gap)) / span var(--answers-x);
   grid-row: calc(var(--header-y) + var(--gap) * 3 + var(--question-y)) / span
     var(--answers-y);
-  z-index: 3;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-content: center; */
   align-items: center;
   flex-wrap: wrap;
   gap: calc(var(--unit) * 2);
@@ -223,6 +254,8 @@ header {
   color: var(--white);
 }
 
+/* 6 -- RESULT BUTTON -- */
+
 .result {
   grid-column: calc(1 + var(--frame-gap)) / span var(--result-x);
   grid-row: calc(
@@ -232,7 +265,7 @@ header {
   justify-content: flex-end;
   align-items: flex-end;
   overflow: hidden;
-  z-index: 4;
+  z-index: 6;
 }
 
 .result button {
@@ -243,7 +276,7 @@ header {
   font-weight: 400;
   color: var(--black);
   cursor: pointer;
-  z-index: 4;
+  z-index: 6;
 }
 
 .result button p {
@@ -261,6 +294,8 @@ header {
   color: var(--primary);
   font-weight: 700;
 }
+
+/* 7 -- SCORE -- */
 
 .score {
   grid-column: 1 / span var(--score-x);
@@ -347,33 +382,40 @@ header {
   background-color: var(--primary);
 }
 
-.loading-wrap {
+/* 8 -- INTRO -- */
+
+.intro-wrap {
   overflow: hidden;
   position: absolute;
   width: 100vw;
-  height: 100%;
-  z-index: 5;
+  height: 100vh;
+  z-index: 7;
 }
 
-.loading {
+.intro {
   background-color: var(--primary);
   transform-origin: bottom left;
   width: 100vw;
-  height: 100%;
-  display: flex;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr 3fr;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   text-align: center;
 }
 
-.loading-text {
+.intro_text-wrap {
+  grid-row: 2 / span 1;
+}
+
+.intro_text {
   font-weight: 400;
   color: var(--lightgray);
   font-size: 16px;
 }
 
-.loading-letter {
+.intro_text_letter {
   font-weight: 700;
   color: var(--white);
   margin-right: 3.2px;
@@ -383,11 +425,18 @@ header {
   margin-right: 0px;
 }
 
+/* 9 -- MEDIA -- */
+
+/* 9.1 Decreased Height */
+
 @media (max-height: 736px) {
   :root {
     --wireframe-y: 80;
   }
 }
+
+/* 9.2 Mobile */
+/* 9.2.1 Generic / Containers */
 
 @media (max-width: 720px) {
   :root {
@@ -399,26 +448,24 @@ header {
     --question-y: 20;
     --answers-x: calc(var(--mobile-width) - var(--frame-gap) * 4);
     --answers-y: 35;
-    --isoline-x: calc(var(--mobile-width) - var(--frame-gap) * 4);
+    --isoline-x: var(--answers-x);
     --isoline-y: calc(var(--question-y) + var(--answers-y) + var(--gap) * 1.5);
     --frame-x: calc(var(--mobile-width) - var(--frame-gap) * 2);
     --frame-y: calc(
       var(--question-y) + var(--answers-y) + var(--gap) / 2 + var(--frame-gap)
     );
+    --container-x: var(--answers-x);
     --result-x: var(--answers-x);
     --score-x: var(--mobile-width);
     --score-y: 6;
     --wireframe-x: var(--mobile-width);
-    /* --wireframe-y: calc(
-      var(--grid-y) - var(--padding-top) - var(--header-y) - var(--gap) * 1.5 -
-        var(--question-y) - var(--score-y)
-    ); */
+
   }
   .game {
     display: grid;
     grid-template-columns: repeat(45, var(--unit));
     grid-template-rows: repeat(
-      calc(var(--grid-y) - var(--padding-top)),
+      var(--grid-y),
       var(--unit)
     );
   }
@@ -427,22 +474,26 @@ header {
     font-size: 20px;
     line-height: 24px;
   }
-
-  .globe-wireframe {
-    grid-column: calc(1 + var(--frame-gap) * 2) / span var(--wireframe-x);
-    grid-row: calc(1 + var(--header-y) + var(--gap) * 2) /
-      span var(--wireframe-y);
-  }
-
+  
+  /* 9.2.2 Header */
+  
   header {
     flex-direction: row;
     justify-content: space-between;
     gap: calc(var(--unit) * 3);
   }
-
+  
   .header_subheader {
     line-height: 13px;
   }
+  
+  /* 9.2.3 Design Elements */
+  
+    .globe-wireframe {
+      grid-column: calc(1 + var(--frame-gap) * 2) / span var(--wireframe-x);
+      grid-row: calc(1 + var(--header-y) + var(--gap) * 2) /
+        span var(--wireframe-y);
+    }
 
   .main_frame {
     grid-column: calc(1 + var(--frame-gap)) / span var(--frame-x);
@@ -450,15 +501,17 @@ header {
   }
 
   .main_container {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-    opacity: 0;
+    grid-column: calc(1 + var(--frame-gap) * 2) / span var(--container-x);
+    grid-row: calc(1 + var(--header-y) + var(--gap) * 1.5) / span var(--container-y);
   }
 
   .main_isoline-map {
     grid-column: calc(1 + var(--frame-gap) * 2) / span var(--isoline-x);
     grid-row: calc(var(--header-y) + var(--unit)) / span var(--isoline-y);
   }
+
+  /* 9.2.4-7 Question, Answers, Result, Score */
+
 
   .main_question-wrap {
     grid-column: 1 / span var(--question-x);

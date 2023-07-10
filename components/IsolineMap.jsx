@@ -19,7 +19,7 @@ export default function IsolineMap(props) {
   };
   scale = 2.05;
   rotate = 0;
-  translateX = -8;
+  translateX = -6;
   translateY = 72;
   let origin = {
     x: (viewbox.x * scale - viewbox.x) / 2,

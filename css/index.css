@@ -19,7 +19,6 @@
     9.2.4-7 Question, Answers, Result, Score
 */
 
-
 /* 1 -- GENERIC / CONTAINERS -- */
 
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
@@ -74,8 +73,6 @@
   --score-x: 32;
   --score-y: 10;
 }
-
-
 
 body {
   background: linear-gradient(var(--bg-lightgray), var(--lightgray));
@@ -442,7 +439,7 @@ header {
   :root {
     --mobile-width: 45;
     --padding-top: 2;
-    --header-x: var(--mobile-width);
+    --header-x: calc(var(--mobile-width) - var(--frame-gap) * 4);
     --header-y: 6;
     --question-x: var(--mobile-width);
     --question-y: 20;
@@ -459,41 +456,39 @@ header {
     --score-x: var(--mobile-width);
     --score-y: 6;
     --wireframe-x: var(--mobile-width);
-
   }
   .game {
     display: grid;
     grid-template-columns: repeat(45, var(--unit));
-    grid-template-rows: repeat(
-      var(--grid-y),
-      var(--unit)
-    );
+    grid-template-rows: repeat(var(--grid-y), var(--unit));
   }
 
   h1 {
     font-size: 20px;
     line-height: 24px;
   }
-  
+
   /* 9.2.2 Header */
-  
+
   header {
+    grid-column: 3 / span var(--header-x);
     flex-direction: row;
     justify-content: space-between;
     gap: calc(var(--unit) * 3);
   }
-  
+
   .header_subheader {
     line-height: 13px;
+    letter-spacing: 0.9px;
   }
-  
+
   /* 9.2.3 Design Elements */
-  
-    .globe-wireframe {
-      grid-column: calc(1 + var(--frame-gap) * 2) / span var(--wireframe-x);
-      grid-row: calc(1 + var(--header-y) + var(--gap) * 2) /
-        span var(--wireframe-y);
-    }
+
+  .globe-wireframe {
+    grid-column: calc(1 + var(--frame-gap) * 2) / span var(--wireframe-x);
+    grid-row: calc(1 + var(--header-y) + var(--gap) * 2) / span
+      var(--wireframe-y);
+  }
 
   .main_frame {
     grid-column: calc(1 + var(--frame-gap)) / span var(--frame-x);
@@ -502,7 +497,8 @@ header {
 
   .main_container {
     grid-column: calc(1 + var(--frame-gap) * 2) / span var(--container-x);
-    grid-row: calc(1 + var(--header-y) + var(--gap) * 1.5) / span var(--container-y);
+    grid-row: calc(1 + var(--header-y) + var(--gap) * 1.5) / span
+      var(--container-y);
   }
 
   .main_isoline-map {
@@ -511,7 +507,6 @@ header {
   }
 
   /* 9.2.4-7 Question, Answers, Result, Score */
-
 
   .main_question-wrap {
     grid-column: 1 / span var(--question-x);
@@ -544,8 +539,9 @@ header {
 
   .score {
     padding: calc(var(--unit) * 2);
-    grid-row: calc(1 + var(--header-y) + var(--gap) * 1 + var(--frame-gap) + var(--frame-y)) / span
-      var(--score-y);
+    grid-row: calc(
+        1 + var(--header-y) + var(--gap) * 1 + var(--frame-gap) + var(--frame-y)
+      ) / span var(--score-y);
     flex-direction: row;
     align-items: center;
   }

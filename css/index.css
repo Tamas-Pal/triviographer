@@ -173,6 +173,7 @@ header {
   background-color: var(--lightgray);
   border: calc(var(--stroke-width) * 2) solid var(--white);
   overflow: hidden;
+  object-fit: cover;
   z-index: 3;
 }
 

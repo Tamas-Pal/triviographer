@@ -15,11 +15,11 @@ export default function IsolineMap(props) {
   let viewbox, scale, rotate, translateX, translateY;
   viewbox = {
     x: props.isolineAttributes.width,
-    y: props.isolineAttributes.height + props.strokeWidth * 2,
+    y: props.isolineAttributes.height + props.strokeWidth * 6,
   };
   scale = 2.05;
   rotate = 0;
-  translateX = -6;
+  translateX = -8;
   translateY = 72;
   let origin = {
     x: (viewbox.x * scale - viewbox.x) / 2,

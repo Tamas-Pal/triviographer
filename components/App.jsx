@@ -118,7 +118,7 @@ export default function App(props) {
           ) +
           1.75 * props.unit;
         let isolineDimensions = {
-          width: 164,
+          width: 228,
           height:
             Math.ceil(questionHeight + answersHeight + 6) * props.unit - 84,
           y: 84,

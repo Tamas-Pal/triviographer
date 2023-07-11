@@ -76,13 +76,14 @@
 
 body {
   background: linear-gradient(var(--bg-lightgray), var(--lightgray));
+  display: fixed;
 }
 
 .root {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100svh;
+  height: 100vh;
 }
 
 .game {
@@ -438,7 +439,7 @@ header {
 
 @media (max-width: 720px) {
   :root {
-    --mobile-width: 45;
+    --mobile-width: 44;
     --padding-top: 2;
     --header-x: calc(var(--mobile-width) - var(--frame-gap) * 4);
     --header-y: 6;
@@ -460,13 +461,13 @@ header {
   }
   .game {
     display: grid;
-    grid-template-columns: repeat(45, var(--unit));
+    grid-template-columns: repeat(var(--mobile-width), var(--unit));
     grid-template-rows: repeat(var(--grid-y), var(--unit));
   }
 
   h1 {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   /* 9.2.2 Header */
@@ -528,6 +529,9 @@ header {
     max-width: calc(var(--unit) * 25);
     padding: calc(var(--unit) * 1) calc(var(--unit) * 2) calc(var(--unit) * 1)
       calc(var(--unit) * 2);
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
   }
 
   .result {
@@ -536,6 +540,11 @@ header {
         1 + var(--header-y) + var(--gap) * 1.5 + var(--question-y) +
           var(--answers-y) - var(--result-y)
       ) / span var(--result-y);
+  }
+
+  .result button {
+    font-size: 14px;
+    line-height: 16px;
   }
 
   .score {
@@ -549,5 +558,11 @@ header {
   .score_ratio {
     padding-top: 0;
     margin-bottom: calc(var(--unit) * -1);
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .score_ratio_division {
+    font-size: 14px;
   }
 }

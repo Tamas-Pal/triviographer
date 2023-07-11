@@ -49,15 +49,15 @@ export default function App(props) {
         // compile challenge
         setChallenge((prevState) => ({
           ...prevState,
-          //q: question,
-          q: `THE DERISIVE ACRONYM "PIIGS" REFERS TO WHICH OF THE FOLLOWING EUROPEAN COUNTRIES AND THEIR ECONOMIC STATUSES?`,
-          //a: answers,
-          a: [
+          q: question,
+          /*q: `THE DERISIVE ACRONYM "PIIGS" REFERS TO WHICH OF THE FOLLOWING EUROPEAN COUNTRIES AND THEIR ECONOMIC STATUSES?`,*/
+          a: answers,
+          /*a: [
             "Poland, Iceland, Italy, Greece, Serbia",
             "Poland, Iceland, Italy, Greenland, Spain",
             "Portugal, Iceland, Ireland, Greece, Serbia",
             "Portugal, Ireland, Italy, Greece, Spain",
-          ],
+          ],*/
           order: randomSort(),
           state: "active",
         }));
@@ -132,17 +132,6 @@ export default function App(props) {
         };
         return [answersHeight, isolineDimensions];
       };
-
-      // adjust grid height
-      const paddingTop = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--padding-top"
-        )
-      );
-      document.documentElement.style.setProperty(
-        "--grid-y",
-        Math.floor(size.height / props.unit) - paddingTop
-      );
 
       // question height
       let questionOffsetHeight = elementsRef.current.question.offsetHeight;

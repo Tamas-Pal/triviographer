@@ -221,7 +221,7 @@ header {
   background-color: var(--offwhite);
 }
 .main_answer-wrap {
-  padding: calc(var(--unit) * 0.5) calc(var(--unit) * 0.5);
+  padding: calc(var(--unit) * 0.5) ;
   background-color: var(--lightgray);
   border: calc(var(--stroke-width)) solid var(--white);
   border-radius: calc(var(--unit) * 4.5);
@@ -396,16 +396,15 @@ header {
   transform-origin: bottom left;
   width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr 1fr 3fr;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   text-align: center;
 }
 
 .intro_text-wrap {
-  grid-row: 2 / span 1;
+  position: relative;
+  top: calc(
+    (var(--header-y) + var(--gap) * 3 + var(--padding-top)) * var(--unit)
+  );
 }
 
 .intro_text {
@@ -459,12 +458,14 @@ header {
     --score-y: 6;
     --wireframe-x: var(--mobile-width);
     --grid-y: calc(
-      1 + var(--header-y) + var(--gap) * 1 + var(--frame-gap) + var(--frame-y) + var(--score-y)
+      1 + var(--header-y) + var(--gap) * 1 + var(--frame-gap) + var(--frame-y) +
+        var(--score-y)
     );
+    --page-y: calc((var(--grid-y) + var(--padding-top)) * var(--unit));
   }
 
   .root {
-    height: 130vh;
+    height: max(var(--page-y), 100vh);
   }
 
   .game {
@@ -524,15 +525,15 @@ header {
       var(--question-y);
     padding: calc(var(--unit) * 2) calc(var(--unit) * 4);
   }
-
   .main_answers {
     flex-wrap: nowrap;
     grid-column: calc(1 + var(--frame-gap) * 2) / span var(--answers-x);
     grid-row: calc(1 + var(--header-y) + var(--gap) * 1.5 + var(--question-y)) /
       span var(--answers-y);
     gap: calc(var(--unit) * 1.5);
-  }
+    padding: calc(var(--unit) * 3) calc(var(--unit) * 6);
 
+  }
   .main_answer {
     max-width: calc(var(--unit) * 25);
     padding: calc(var(--unit) * 1) calc(var(--unit) * 2) calc(var(--unit) * 1)
@@ -549,7 +550,6 @@ header {
           var(--answers-y) - var(--result-y)
       ) / span var(--result-y);
   }
-
   .result button {
     font-size: 14px;
     line-height: 16px;
@@ -569,8 +569,23 @@ header {
     font-size: 20px;
     line-height: 24px;
   }
-
   .score_ratio_division {
     font-size: 14px;
+  }
+
+  /* 9.2.8 Intro */
+
+  .intro-wrap {
+    height: max(var(--page-y), 100vh);
+  }
+  .intro {
+    height: max(var(--page-y), 100vh);
+  }
+  .intro_text-wrap {
+    position: relative;
+    top: calc(
+      (1 + var(--header-y) + var(--gap) * 1.5 + var(--padding-top)) *
+        var(--unit)
+    );
   }
 }

@@ -458,6 +458,9 @@ header {
     --score-x: var(--mobile-width);
     --score-y: 6;
     --wireframe-x: var(--mobile-width);
+    --grid-y: calc(
+      1 + var(--header-y) + var(--gap) * 1 + var(--frame-gap) + var(--frame-y) + var(--score-y)
+    );
   }
 
   .root {

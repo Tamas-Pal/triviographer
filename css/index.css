@@ -459,6 +459,11 @@ header {
     --score-y: 6;
     --wireframe-x: var(--mobile-width);
   }
+
+  .root {
+    height: 110vh;
+  }
+
   .game {
     display: grid;
     grid-template-columns: repeat(var(--mobile-width), var(--unit));

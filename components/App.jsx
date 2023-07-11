@@ -52,7 +52,12 @@ export default function App(props) {
           //q: question,
           q: `THE DERISIVE ACRONYM "PIIGS" REFERS TO WHICH OF THE FOLLOWING EUROPEAN COUNTRIES AND THEIR ECONOMIC STATUSES?`,
           //a: answers,
-          a: ['Poland, Iceland, Italy, Greece, Serbia', 'Poland, Iceland, Italy, Greenland, Spain', 'Portugal, Iceland, Ireland, Greece, Serbia', "Portugal, Ireland, Italy, Greece, Spain"],
+          a: [
+            "Poland, Iceland, Italy, Greece, Serbia",
+            "Poland, Iceland, Italy, Greenland, Spain",
+            "Portugal, Iceland, Ireland, Greece, Serbia",
+            "Portugal, Ireland, Italy, Greece, Spain",
+          ],
           order: randomSort(),
           state: "active",
         }));
